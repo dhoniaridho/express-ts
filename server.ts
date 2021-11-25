@@ -3,7 +3,7 @@ import Route from "./routes";
 import env from "./env";
 import bodyParser from "body-parser";
 import cors from 'cors';
-import multer from "multer";
+import morgan from 'morgan'
 
 class Server {
   private app = express();
@@ -26,6 +26,7 @@ class Server {
     this.app.use(Route);
   }
   private loadConfig() {
+    this.app.use(morgan(`[:date[clf]] :method http://127.0.0.1:url :status :res[content-length] - :response-time ms`))
     this.app.use(express.json());
     this.app.use(bodyParser.json({limit: "50mb"}));
     this.app.use(express.static("public"));

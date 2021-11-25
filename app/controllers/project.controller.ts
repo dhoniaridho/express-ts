@@ -119,10 +119,8 @@ export default class ProjectController {
 
     const fileUpload = multer({ storage: Storage({ fileName : `${Date.now()}` }).StorageEngine }).fields([{ name: 'image' }, { name: 'file_upload' }]) 
     fileUpload(req, res, () => {
-      console.log(req.files);
+      req.files
     })
-
-
 
     return res.json({success: true})
   }
